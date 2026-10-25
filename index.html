@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thoughtful author spotlights and reader-led conversations from The San Francisco 'not quite a book club' Book Club.">
+  <meta name="theme-color" content="#172a3a">
+  <title>Author Spotlight | The San Francisco “not quite a book club” Book Club</title>
+  <style>
+    :root {
+      --navy: #172a3a;
+      --navy-2: #223e50;
+      --cream: #f7f4ed;
+      --paper: #fffdf8;
+      --gold: #c99c55;
+      --gold-light: #f0dfbf;
+      --ink: #26333a;
+      --muted: #64717a;
+      --line: #e6e0d5;
+      --white: #ffffff;
+      --radius: 18px;
+      --shadow: 0 16px 45px rgba(23, 42, 58, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; }
+    a { color: inherit; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar { background: var(--navy); color: #e9edf0; font-size: .88rem; padding: 9px 0; text-align: center; }
+    header { background: rgba(255,253,248,.96); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(12px); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 22px; min-height: 78px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; max-width: 370px; }
+    .brand-mark { display: grid; place-items: center; flex: 0 0 43px; height: 43px; border-radius: 50%; background: var(--gold-light); color: var(--navy); font-family: Georgia, serif; font-size: 1.25rem; }
+    .brand strong { display: block; font-family: Georgia, serif; font-size: 1.03rem; line-height: 1.2; color: var(--navy); }
+    .brand small { display: block; color: var(--muted); font-size: .75rem; margin-top: 4px; }
+    .nav-links { display: flex; align-items: center; gap: 23px; }
+    .nav-links a { text-decoration: none; font-size: .9rem; color: var(--navy); font-weight: 650; }
+    .nav-links a:hover { color: #9b6b29; }
+    .button { display: inline-flex; justify-content: center; align-items: center; gap: 8px; border-radius: 999px; padding: 13px 20px; font-weight: 750; text-decoration: none; border: 1px solid transparent; transition: transform .18s ease, background .18s ease; cursor: pointer; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--gold); color: #1e2b32; }
+    .button-primary:hover { background: #d9b477; }
+    .button-outline { border-color: rgba(255,255,255,.45); color: var(--white); }
+    .button-dark-outline { border-color: #c9d0d3; color: var(--navy); }
+    .hero { background: radial-gradient(circle at 82% 18%, rgba(201,156,85,.22), transparent 27%), linear-gradient(125deg, var(--navy), #203d4e 72%, #29495a); color: white; padding: 92px 0 88px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.22fr .78fr; align-items: center; gap: 60px; }
+    .eyebrow { color: var(--gold-light); text-transform: uppercase; letter-spacing: .16em; font-weight: 800; font-size: .76rem; }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.15; font-weight: 600; }
+    h1 { font-size: clamp(2.6rem, 5vw, 4.5rem); letter-spacing: -.035em; margin: 18px 0; max-width: 720px; }
+    .hero p { color: #e1e8eb; font-size: 1.12rem; max-width: 660px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-note { font-size: .88rem !important; color: #c8d3d9 !important; margin-top: 19px; }
+    .hero-card { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.17); border-radius: 24px; padding: 30px; box-shadow: 0 20px 50px rgba(0,0,0,.12); }
+    .hero-card .quote-mark { color: var(--gold-light); font: 4rem Georgia, serif; line-height: .8; }
+    .hero-card p { font: 1.3rem/1.55 Georgia, serif; color: white; }
+    .hero-card .card-caption { color: #c8d3d9; font: .9rem/1.5 system-ui, sans-serif; margin-bottom: 0; }
+    section { padding: 82px 0; }
+    .section-soft { background: var(--cream); }
+    .section-heading { max-width: 740px; margin-bottom: 42px; }
+    .section-heading .eyebrow { color: #9a6b2d; }
+    h2 { color: var(--navy); font-size: clamp(2rem, 3.4vw, 3rem); margin: 12px 0 16px; letter-spacing: -.025em; }
+    .section-heading p { color: var(--muted); font-size: 1.05rem; margin: 0; }
+    .three-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .info-card, .package-card, .faq-item { background: white; border: 1px solid var(--line); border-radius: var(--radius); padding: 27px; }
+    .info-card .number { display: grid; place-items: center; width: 42px; height: 42px; background: var(--gold-light); color: var(--navy); border-radius: 50%; font-weight: 850; margin-bottom: 20px; }
+    h3 { font-size: 1.45rem; color: var(--navy); margin: 0 0 12px; }
+    .info-card p, .package-card p { color: var(--muted); margin: 0; }
+    .two-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 54px; align-items: center; }
+    .organizer-photo { width: 100%; max-width: 430px; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: 24px; box-shadow: var(--shadow); background: #e8dfd1; }
+    .photo-frame { position: relative; }
+    .photo-label { position: absolute; left: -15px; bottom: 24px; background: var(--paper); color: var(--navy); border-radius: 12px; padding: 14px 18px; box-shadow: var(--shadow); font-weight: 750; }
+    .body-copy { color: var(--muted); }
+    .check-list { list-style: none; padding: 0; margin: 24px 0; }
+    .check-list li { position: relative; padding-left: 30px; margin: 12px 0; }
+    .check-list li::before { content: "✓"; position: absolute; left: 0; color: #9b6b29; font-weight: 900; }
+    .notice { background: #f6eddc; border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0; padding: 18px 20px; color: #5e4c31; margin-top: 24px; }
+    .packages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+    .package-card { position: relative; display: flex; flex-direction: column; }
+    .package-card.featured { border: 2px solid var(--gold); box-shadow: var(--shadow); }
+    .package-tag { display: inline-block; align-self: flex-start; background: var(--gold-light); color: #694b22; border-radius: 999px; padding: 5px 11px; font-size: .75rem; font-weight: 850; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 15px; }
+    .price { font-size: 2.5rem; font-weight: 800; letter-spacing: -.05em; color: var(--navy); margin: 8px 0 3px; }
+    .price small { font-size: .92rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
+    .package-card ul { padding-left: 19px; margin: 21px 0 25px; color: var(--muted); flex: 1; }
+    .package-card li { margin: 10px 0; }
+    .package-card .button { width: 100%; }
+    .fine-print { font-size: .88rem; color: var(--muted); margin-top: 22px; }
+    .portfolio-box { min-height: 300px; border: 2px dashed #c9c1b4; border-radius: 22px; display: grid; place-items: center; text-align: center; padding: 40px; background: rgba(255,255,255,.55); }
+    .play-icon { width: 66px; height: 66px; display: grid; place-items: center; border-radius: 50%; background: var(--gold-light); color: var(--navy); font-size: 1.4rem; margin: 0 auto 18px; }
+    .portfolio-box p { color: var(--muted); max-width: 520px; margin: 0 auto; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    details { background: white; border: 1px solid var(--line); border-radius: 14px; padding: 19px 21px; }
+    summary { cursor: pointer; color: var(--navy); font-weight: 750; }
+    details p { color: var(--muted); margin: 13px 0 0; }
+    .contact { background: var(--navy); color: white; }
+    .contact h2 { color: white; }
+    .contact .section-heading p { color: #d4dfe4; }
+    .contact-grid { display: grid; grid-template-columns: 1fr .8fr; gap: 45px; align-items: start; }
+    .contact-panel { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); padding: 28px; border-radius: 18px; }
+    .contact-panel p { color: #d4dfe4; }
+    .email-link { color: var(--gold-light); font-size: 1.08rem; font-weight: 750; overflow-wrap: anywhere; }
+    .contact-note { font-size: .88rem; color: #bdcbd2 !important; }
+    footer { background: #10202c; color: #c4cfd4; padding: 26px 0; font-size: .86rem; }
+    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .footer-row a { color: var(--gold-light); text-decoration: none; }
+    .mobile-cta { display: none; }
+    @media (max-width: 850px) {
+      .nav-links { gap: 13px; }
+      .nav-links a:not(.button) { display: none; }
+      .hero-grid, .two-grid, .contact-grid { grid-template-columns: 1fr; gap: 35px; }
+      .hero { padding: 65px 0; }
+      .hero-card { max-width: 600px; }
+      .three-grid, .packages { grid-template-columns: 1fr; }
+      .package-card { max-width: 600px; width: 100%; margin: 0 auto; }
+      .organizer-photo { max-width: 360px; }
+      .photo-label { left: 10px; }
+      .faq-grid { grid-template-columns: 1fr; }
+      section { padding: 65px 0; }
+    }
+    @media (max-width: 480px) {
+      .container { width: min(100% - 30px, 1120px); }
+      .nav { min-height: 68px; }
+      .brand { gap: 8px; }
+      .brand-mark { flex-basis: 37px; height: 37px; }
+      .brand strong { font-size: .9rem; }
+      .brand small { font-size: .68rem; }
+      .nav-links .button { padding: 10px 13px; font-size: .82rem; }
+      h1 { font-size: 2.55rem; }
+      .hero-card { padding: 23px; }
+      .info-card, .package-card { padding: 23px; }
+      .footer-row { display: block; }
+      .footer-row span { display: block; margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">A thoughtful space for authors, ideas, and reader-led conversation</div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Author Spotlight home">
+        <span class="brand-mark">NQ</span>
+        <span><strong>The San Francisco “not quite a book club”</strong><small>Book Club · Author Spotlight</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#how-it-works">How it works</a>
+        <a href="#packages">Packages</a>
+        <a href="#faq">FAQs</a>
+        <a class="button button-primary" href="#contact">Contact us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Author Spotlight · Reader community</div>
+          <h1>Give your book a thoughtful place in the conversation.</h1>
+          <p>Our Author Spotlight is a structured way to introduce authors and their work to a community of readers through considered features, discussion prompts, and opportunities for meaningful engagement.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#packages">Explore Spotlight options <span aria-hidden="true">→</span></a>
+            <a class="button button-outline" href="#how-it-works">See how it works</a>
+          </div>
+          <p class="hero-note">Clear options. Defined deliverables. No pressure to proceed.</p>
+        </div>
+        <aside class="hero-card">
+          <div class="quote-mark">“</div>
+          <p>Books can open doors to ideas, experiences, and conversations that stay with readers long after the final page.</p>
+          <p class="card-caption">The aim of each Spotlight is to help readers discover the story and ideas behind a book—and give authors a clear, welcoming way to share their work.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">The process</div>
+          <h2>A clear process from introduction to follow-up.</h2>
+          <p>Each Spotlight is planned in advance so authors understand what is included, what is expected, and what they can reasonably expect from the collaboration.</p>
+        </div>
+        <div class="three-grid">
+          <article class="info-card">
+            <div class="number">01</div>
+            <h3>Book introduction</h3>
+            <p>We prepare an author-and-book feature and share it through our community channels according to the selected package.</p>
+          </article>
+          <article class="info-card">
+            <div class="number">02</div>
+            <h3>Reader engagement</h3>
+            <p>Where included and scheduled, readers are invited to explore the book and use discussion prompts to guide thoughtful conversation.</p>
+          </article>
+          <article class="info-card">
+            <div class="number">03</div>
+            <h3>Spotlight follow-up</h3>
+            <p>We prepare the post-event or follow-up materials listed in the chosen package. Specific deliverables are agreed before work begins.</p>
+          </article>
+        </div>
+        <div class="notice"><strong>Important to know:</strong> A Spotlight is a paid promotional and editorial service. Reader participation, purchases, reviews, recommendations, or sales are not guaranteed. Any live discussion is subject to scheduling and confirmation.</div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="about">
+      <div class="container two-grid">
+        <div class="photo-frame">
+          <img class="organizer-photo" src="assets/nik-organizer.png" alt="Nik, organizer of The San Francisco “not quite a book club” Book Club">
+          <div class="photo-label">Nik · Community Organizer</div>
+        </div>
+        <div>
+          <div class="eyebrow" style="color:#9a6b2d">About the Spotlight</div>
+          <h2>Thoughtful presentation, with expectations made clear.</h2>
+          <p class="body-copy">The San Francisco “not quite a book club” Book Club brings readers together around books, ideas, and the experiences that make reading meaningful. Our Author Spotlight service is designed to present selected books with care and give interested readers a way to discover the people and thinking behind them.</p>
+          <p class="body-copy">We aim to make the process professional and straightforward, from the initial inquiry to the agreed deliverables. Authors are encouraged to review the information on this page and ask questions before making a payment.</p>
+          <ul class="check-list">
+            <li>Written description of each package and its deliverables</li>
+            <li>Upfront pricing before you commit</li>
+            <li>Email support for questions and clarifications</li>
+            <li>Scope and timing confirmed before work begins</li>
+          </ul>
+          <a class="button button-dark-outline" href="#contact">Ask a question</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Packages & pricing</div>
+          <h2>Choose the level of support that fits your goals.</h2>
+          <p>Review the inclusions below and contact us if you need clarification. No package should be selected until you understand its scope and terms.</p>
+        </div>
+        <div class="packages">
+          <article class="package-card">
+            <span class="package-tag">Essential feature</span>
+            <h3>Community Spotlight</h3>
+            <div class="price">$174 <small>one-time</small></div>
+            <p>A community-focused introduction to your book and the ideas behind it.</p>
+            <ul>
+              <li>Dedicated feature shared through community channels</li>
+              <li>Author spotlight content highlighting your journey and book</li>
+              <li>Reader-engagement prompts, where applicable</li>
+              <li>Promotional graphics and announcements</li>
+              <li>Visibility within the community spaces specified in the agreement</li>
+            </ul>
+            <a class="button button-dark-outline" href="mailto:sanfrancisconotquitebooksclub@gmail.com?subject=Community%20Spotlight%20Inquiry">Ask about this package</a>
+          </article>
+          <article class="package-card featured">
+            <span class="package-tag">Enhanced editorial</span>
+            <h3>Editorial Spotlight</h3>
+            <div class="price">$237 <small>one-time</small></div>
+            <p>For authors who want additional editorial context around their work.</p>
+            <ul>
+              <li>Everything in Community Spotlight</li>
+              <li>Optional interactive Q&amp;A opportunity, subject to scheduling</li>
+              <li>Newspaper-style editorial profile about the author and book</li>
+              <li>Enhanced placement within agreed community announcements</li>
+              <li>Author and book positioning within the specified reader network</li>
+            </ul>
+            <a class="button button-primary" href="mailto:sanfrancisconotquitebooksclub@gmail.com?subject=Editorial%20Spotlight%20Inquiry">Ask about this package</a>
+          </article>
+          <article class="package-card">
+            <span class="package-tag">Premium presentation</span>
+            <h3>Signature Author Honors</h3>
+            <div class="price">$289 <small>one-time</small></div>
+            <p>A broader presentation package with additional creative assets.</p>
+            <ul>
+              <li>Everything in Editorial Spotlight</li>
+              <li>Cinematic-style promotional video feature</li>
+              <li>Digital recognition certificate</li>
+              <li>Premium visibility within the agreed community channels</li>
+              <li>Longer-term presence as defined in the written scope</li>
+            </ul>
+            <a class="button button-dark-outline" href="mailto:sanfrancisconotquitebooksclub@gmail.com?subject=Signature%20Author%20Honors%20Inquiry">Ask about this package</a>
+          </article>
+        </div>
+        <p class="fine-print">Pricing and inclusions should be reconfirmed in writing before payment. “Visibility” describes planned placement or publication of agreed materials; it does not promise a specific number of views, reader interactions, book sales, reviews, or event attendees. Any certificate or recognition is a participation/feature acknowledgment, not an independent literary award or endorsement.</p>
+      </div>
+    </section>
+
+    <section class="section-soft" id="portfolio">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Portfolio</div>
+          <h2>See a past event.</h2>
+          <p>We’ll add a video from a previous event here so prospective authors can get a better feel for the format and presentation.</p>
+        </div>
+        <div class="portfolio-box">
+          <div>
+            <div class="play-icon" aria-hidden="true">▶</div>
+            <h3>Past event video coming soon</h3>
+            <p>This space is reserved for a video portfolio example. Once your video is ready, replace this placeholder with an embedded video and a short caption describing the event.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Frequently asked questions</div>
+          <h2>Know what to expect before you decide.</h2>
+          <p>If something is not answered here, email us. We would rather clarify the details before you commit.</p>
+        </div>
+        <div class="faq-grid">
+          <details>
+            <summary>Is the Author Spotlight free?</summary>
+            <p>No. The packages shown on this page are paid services. Please review the price and deliverables for the package you are considering before agreeing to proceed.</p>
+          </details>
+          <details>
+            <summary>Do I need to pay before a preliminary Zoom call?</summary>
+            <p>We do not currently offer preliminary one-to-one Zoom calls as a standard step in the process. Please email your questions first. We will clarify the service and its written scope so you can decide whether to proceed before paying.</p>
+          </details>
+          <details>
+            <summary>What happens after I contact you?</summary>
+            <p>We will respond by email, clarify your goals and any questions, confirm the package scope and timing in writing, and explain the next steps. Do not make a payment until you are comfortable with the written details.</p>
+          </details>
+          <details>
+            <summary>Will you guarantee book sales, reviews, or attendance?</summary>
+            <p>No. We can describe the promotional work and placements included in a package, but we cannot guarantee purchases, reviews, recommendations, audience size, or sales results.</p>
+          </details>
+          <details>
+            <summary>Can I ask questions before paying?</summary>
+            <p>Yes. Email us with any questions about deliverables, timing, payment, cancellation, or how the Spotlight works. We encourage authors to understand the terms before making a financial commitment.</p>
+          </details>
+          <details>
+            <summary>Can I choose a package and schedule later?</summary>
+            <p>Scheduling depends on availability. The intended timing and deliverables should be confirmed in writing before payment, and any changes should be agreed by email.</p>
+          </details>
+          <details>
+            <summary>Will my book be reviewed or endorsed?</summary>
+            <p>A Spotlight is a promotional/editorial feature, not a promise of an independent review or endorsement. Any reader opinions are their own and should be represented accurately.</p>
+          </details>
+          <details>
+            <summary>What if I have a concern about the service?</summary>
+            <p>Contact us by email before paying. Ask for clarification of the scope, delivery schedule, cancellation terms, and refund policy. These terms should be confirmed in writing before the collaboration begins.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2>Have a question about the Spotlight?</h2>
+          <p class="body-copy" style="color:#d4dfe4">Tell us about your book and what you hope to achieve. We welcome clear questions and will do our best to explain the service before you make a decision.</p>
+          <a class="button button-primary" href="mailto:sanfrancisconotquitebooksclub@gmail.com?subject=Author%20Spotlight%20Inquiry">Email the organizer</a>
+        </div>
+        <div class="contact-panel">
+          <h3 style="color:white">Nik, Organizer</h3>
+          <p>The San Francisco “not quite a book club” Book Club</p>
+          <p><strong>Email</strong><br><a class="email-link" href="mailto:sanfrancisconotquitebooksclub@gmail.com">sanfrancisconotquitebooksclub@gmail.com</a></p>
+          <p class="contact-note">For clarity and record-keeping, package questions and confirmations are handled by email. Please include the book title and the package you are interested in.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>© <span id="year"></span> The San Francisco “not quite a book club” Book Club</div>
+      <span>Author Spotlight · Clear information, thoughtful conversations</span>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
